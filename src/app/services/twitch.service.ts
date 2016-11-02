@@ -15,7 +15,7 @@ export class TwitchService {
 
   constructor(public jsonp: Jsonp) { }
 
-  search(): Observable<string[]> {
+  refresh(): Observable<string[]> {
     const apiCall: string = this.apiBaseUrl + this.user + this.query;
 
     return this.jsonp.get(apiCall)

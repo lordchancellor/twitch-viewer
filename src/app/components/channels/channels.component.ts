@@ -37,7 +37,7 @@ export class ChannelsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.twitchService.search().subscribe(
+    this.twitchService.refresh().subscribe(
       val => this.val = val,
       error =>  this.errorMessage = <any>error);
   }
