@@ -1,0 +1,22 @@
+<div class="control-strip">
+  <div class="title-block">
+    <h1>Twitch TV Viewer</h1>
+  </div>
+  <div class="control-block">
+    <div class="button-block">
+      <button class="btn btn-info">
+        Refresh
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="input-block">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search..." #searchField (keyup.enter)="search(searchField)">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" (click)="search(searchField)"><i class="fa fa-search"></i></button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

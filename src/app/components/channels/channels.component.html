@@ -1,0 +1,5 @@
+<div class="channel-row">
+	<tv-channel *ngFor="let channel of channels" [channel]="channel"></tv-channel>
+</div>
+
+<button class="btn btn-primary" (click)="logTwitchData()">Log Twitch Data</button>
