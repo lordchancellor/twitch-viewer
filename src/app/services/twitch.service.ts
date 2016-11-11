@@ -9,7 +9,7 @@ export class TwitchService {
 
   apiBaseUrl: string = 'https://wind-bow.hyperdev.space/twitch-api/streams/';
   user: string = 'ESL_SC2';
-  query: string = '?callback=?';
+  query: string = '?callback=JSONP_CALLBACK';
 
   defaultChannels: string[] = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
 
