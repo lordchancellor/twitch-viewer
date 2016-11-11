@@ -10,7 +10,7 @@ import { TwitchService } from '../../services/twitch.service';
 })
 export class ChannelsComponent implements OnInit {
   channels: TwitchChannel[];
-  val: string[];
+  val: string;
   errorMessage: any;
 
   constructor(public twitchService: TwitchService) {
@@ -47,6 +47,6 @@ export class ChannelsComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    //this.twitchService.search().unsubscribe();
+    //this.twitchService.refresh().unsubscribe();
   }
 }
