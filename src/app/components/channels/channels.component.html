@@ -2,6 +2,8 @@
 	<tv-channel *ngFor="let channel of channels" [channel]="channel"></tv-channel>
 </div>
 
-<button class="btn btn-primary" (click)="logTwitchData()">Log Twitch Data</button>
-
-<button class="btn btn-warning" (click)="buildStarcraft()">Create StarCraft Channel</button>
+<div class="btn-group" role="group">
+	<button class="btn btn-primary" (click)="logChannel()">Log Channel Data</button>
+	<button class="btn btn-primary" (click)="logStream()">Log Stream Data</button>
+	<button class="btn btn-warning" (click)="buildStarcraft()">Create StarCraft Channel</button>
+</div>

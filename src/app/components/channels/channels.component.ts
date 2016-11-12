@@ -12,8 +12,8 @@ export class ChannelsComponent implements OnInit {
   channels: TwitchChannel[] = [];
   defaultChannels: string[];
   
-  channelInfo;
-  liveStatus;
+  channelObj: any = {};
+  streamObj: any = {};
 
   starcraftChannel: any = {};
   
@@ -21,24 +21,20 @@ export class ChannelsComponent implements OnInit {
   errorMessage: any[];
 
   constructor(public twitchService: TwitchService) {
-    this.twitchService.getChannel('freecodecamp')
+    this.defaultChannels = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+
+    this.twitchService.getChannel(this.defaultChannels[0])
       .subscribe(
-        data => this.channelInfo = data
+        data => this.channelObj = data
       );
 
-    this.twitchService.getLiveStatus('freecodecamp')
+    this.twitchService.getLiveStatus(this.defaultChannels[0])
       .subscribe(
-        data => this.liveStatus = data
+        data => this.streamObj = data
       );
   }
 
   ngOnInit() {
-    this.defaultChannels = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
-
-    this.twitchService.refresh().subscribe(
-      val => this.data = val,
-      error =>  this.errorMessage = <any>error);
-
     this.twitchService.getChannel(this.defaultChannels[0]).subscribe(
       data => {
         this.starcraftChannel.logo = data.logo;
@@ -48,9 +44,8 @@ export class ChannelsComponent implements OnInit {
     );
 
     this.twitchService.getLiveStatus(this.defaultChannels[0]).subscribe(
-      res => this.starcraftChannel.isLive = !res.stream === null
+      res => this.starcraftChannel.isLive = res.stream !== null
     );
-
    
     for (let channel of this.defaultChannels) {
       let logo: string;
@@ -76,19 +71,6 @@ export class ChannelsComponent implements OnInit {
 	  }
   }
 
-  logTwitchData() {
-    //console.log(this.data);
-    console.log(`Channel Info: `);
-    console.log(this.channelInfo);
-    console.log(`Live Status:`);
-    console.log(this.liveStatus);
-
-    console.log(this.channelInfo.logo,
-          !this.liveStatus.stream === null,
-          this.channelInfo.display_name,
-          this.channelInfo.status);
-  }
-
   ngOnDestroy() {
     //this.twitchService.refresh().unsubscribe();
   }
@@ -102,5 +84,13 @@ export class ChannelsComponent implements OnInit {
         this.starcraftChannel.description
       )
     );
+  }
+
+  logChannel() {
+    console.log(this.channelObj);
+  }
+
+  logStream() {
+    console.log(this.streamObj);
   }
 }
