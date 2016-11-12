@@ -40,6 +40,7 @@ export class ChannelsComponent implements OnInit {
         this.starcraftChannel.logo = data.logo;
         this.starcraftChannel.title = data.display_name;
         this.starcraftChannel.description = data.status;
+        this.starcraftChannel.url = data.url;
       }
     );
 
@@ -52,12 +53,14 @@ export class ChannelsComponent implements OnInit {
       let title: string;
       let description: string;
       let isLive: boolean;
+      let url: string;
  
       this.twitchService.getChannel(channel)
         .subscribe(res => {
           logo = res.logo;
           title = res.display_name;
           description = res.status;
+          url = res.url;
         });
 
       this.twitchService.getLiveStatus(channel)
@@ -66,13 +69,13 @@ export class ChannelsComponent implements OnInit {
         });
 
       this.channels.push(
-        new TwitchChannel(logo, isLive, title, description)
+        new TwitchChannel(logo, isLive, title, description, url)
       );
 	  }
   }
 
   ngOnDestroy() {
-    //this.twitchService.refresh().unsubscribe();
+
   }
 
   buildStarcraft() {
@@ -81,7 +84,8 @@ export class ChannelsComponent implements OnInit {
         this.starcraftChannel.logo,
         this.starcraftChannel.isLive,
         this.starcraftChannel.title,
-        this.starcraftChannel.description
+        this.starcraftChannel.description,
+        this.starcraftChannel.url
       )
     );
   }
