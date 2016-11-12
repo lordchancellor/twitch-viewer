@@ -9,11 +9,13 @@ import { TwitchService } from '../../services/twitch.service';
   styleUrls: ['./channels.component.scss']
 })
 export class ChannelsComponent implements OnInit {
-  channels: TwitchChannel[];
+  channels: TwitchChannel[] = [];
   defaultChannels: string[];
   
   channelInfo;
   liveStatus;
+
+  starcraftChannel: any = {};
   
   data: string;
   errorMessage: any[];
@@ -28,32 +30,6 @@ export class ChannelsComponent implements OnInit {
       .subscribe(
         data => this.liveStatus = data
       );
-
-
-
-
-
-    /*this.channels = [
-      new TwitchChannel(
-        'http://www.wallpaperbetter.com/wallpaper/230/622/534/starcraft-ii-heart-of-the-swarm-1080P-wallpaper-thumb.jpg',
-        true,
-        'StarCraft II',
-        'We all love StarCraft 2!!'
-      ),
-      new TwitchChannel(
-        'http://www.wallpaperbetter.com/wallpaper/230/622/534/starcraft-ii-heart-of-the-swarm-1080P-wallpaper-thumb.jpg',
-        false,
-        'StarCraft II',
-        'We all love StarCraft 2!!'
-      ),
-      new TwitchChannel(
-        'http://www.wallpaperbetter.com/wallpaper/230/622/534/starcraft-ii-heart-of-the-swarm-1080P-wallpaper-thumb.jpg',
-        true,
-        'StarCraft II',
-        'We all love StarCraft 2!!'
-      )
-    ];*/
-
   }
 
   ngOnInit() {
@@ -63,6 +39,19 @@ export class ChannelsComponent implements OnInit {
       val => this.data = val,
       error =>  this.errorMessage = <any>error);
 
+    this.twitchService.getChannel(this.defaultChannels[0]).subscribe(
+      data => {
+        this.starcraftChannel.logo = data.logo;
+        this.starcraftChannel.title = data.display_name;
+        this.starcraftChannel.description = data.status;
+      }
+    );
+
+    this.twitchService.getLiveStatus(this.defaultChannels[0]).subscribe(
+      res => this.starcraftChannel.isLive = !res.stream === null
+    );
+
+   
     for (let channel of this.defaultChannels) {
       let logo: string;
       let title: string;
@@ -102,5 +91,16 @@ export class ChannelsComponent implements OnInit {
 
   ngOnDestroy() {
     //this.twitchService.refresh().unsubscribe();
+  }
+
+  buildStarcraft() {
+    this.channels.push(
+      new TwitchChannel(
+        this.starcraftChannel.logo,
+        this.starcraftChannel.isLive,
+        this.starcraftChannel.title,
+        this.starcraftChannel.description
+      )
+    );
   }
 }
