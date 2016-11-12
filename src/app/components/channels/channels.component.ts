@@ -47,31 +47,22 @@ export class ChannelsComponent implements OnInit {
     this.twitchService.getLiveStatus(this.defaultChannels[0]).subscribe(
       res => this.starcraftChannel.isLive = res.stream !== null
     );
-   
+
     for (let channel of this.defaultChannels) {
-      let logo: string;
-      let title: string;
-      let description: string;
-      let isLive: boolean;
-      let url: string;
- 
-      this.twitchService.getChannel(channel)
-        .subscribe(res => {
-          logo = res.logo;
-          title = res.display_name;
-          description = res.status;
-          url = res.url;
-        });
-
-      this.twitchService.getLiveStatus(channel)
-        .subscribe(res => {
-          isLive = !res.stream === null;
-        });
-
-      this.channels.push(
-        new TwitchChannel(logo, isLive, title, description, url)
+      this.twitchService.getChannel(channel).subscribe(
+        res => {
+          this.channels.push(
+            new TwitchChannel(
+              res.logo,
+              true,
+              res.display_name,
+              res.status,
+              res.url
+            )
+          );
+        }
       );
-	  }
+    }
   }
 
   ngOnDestroy() {
