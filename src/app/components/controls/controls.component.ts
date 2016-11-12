@@ -14,6 +14,7 @@ export class ControlsComponent implements OnInit {
 
   search(input: any) {
     console.log('You have searched for', input.value);
+    input.value = '';
   }
 
 }
