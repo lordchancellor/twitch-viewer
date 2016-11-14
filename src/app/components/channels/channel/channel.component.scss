@@ -15,56 +15,48 @@
 		}
 	}
 
-	.flex-container {
+	.topRow {
 		display: flex;
-		flex-direction: column;
+		
+		.image-wrapper {
+			width: 80%;
+			padding: 5px;
+			overflow: hidden;
 
-		.topRow {
-			display: flex;
-			
-			.image-wrapper {
-				width: 80%;
-				padding: 5px;
-				overflow: hidden;
-
-				img {
-					width: 100%;
-					border-radius: 4px;
-				}
+			img {
+				width: 100%;
+				border-radius: 4px;
 			}
+		}
 
-			.traffic-lights {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: flex-start;
-				width: 20%;
+		.traffic-lights {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-start;
+			width: 20%;
 
-				.traffic-light {
-					width: 30px;
-					height: 30px;
-					border-radius: 50%;
-					margin-top: 5px;
+			.traffic-light {
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				margin-top: 5px;
 
-					&.green {
-						//background: #1b5e20;
-						background: #144417;
+				&.green {
+					background: #144417;
 
-						&.active {
-							background: #4caf50;
-							box-shadow: 0 0 5px 0 #4caf50;
-						}
+					&.active {
+						background: #4caf50;
+						box-shadow: 0 0 5px 0 #4caf50;
 					}
+				}
 
-					&.red {
-						//background: #b71c1c;
-						//background: #9D1818;
-						background: #771212;
+				&.red {
+					background: #771212;
 
-						&.active {
-							background: #b71c1c;
-							box-shadow: 0 0 5px 0 #f44336;
-						}
+					&.active {
+						background: #b71c1c;
+						box-shadow: 0 0 5px 0 #f44336;
 					}
 				}
 			}
