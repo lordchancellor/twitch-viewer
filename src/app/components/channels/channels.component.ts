@@ -21,14 +21,14 @@ export class ChannelsComponent implements OnInit {
   errorMessage: any[];
 
   constructor(public twitchService: TwitchService) {
-    this.defaultChannels = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+    this.defaultChannels = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "habathcx", "RobotCaleb", "noobs2ninjas"];
 
     this.twitchService.getChannel(this.defaultChannels[0])
       .subscribe(
         data => this.channelObj = data
       );
 
-    this.twitchService.getLiveStatus(this.defaultChannels[0])
+    this.twitchService.getStream(this.defaultChannels[0])
       .subscribe(
         data => this.streamObj = data
       );
@@ -44,17 +44,23 @@ export class ChannelsComponent implements OnInit {
       }
     );
 
-    this.twitchService.getLiveStatus(this.defaultChannels[0]).subscribe(
+    this.twitchService.getStream(this.defaultChannels[0]).subscribe(
       res => this.starcraftChannel.isLive = res.stream !== null
     );
 
     for (let channel of this.defaultChannels) {
+      let isLive: boolean;
+
+      this.twitchService.getStream(channel).subscribe(
+        res => isLive = res.stream !== null
+      );
+
       this.twitchService.getChannel(channel).subscribe(
         res => {
           this.channels.push(
             new TwitchChannel(
               res.logo,
-              true,
+              isLive,
               res.display_name,
               res.status,
               res.url

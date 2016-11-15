@@ -32,7 +32,7 @@ export class TwitchService {
         .catch((err: any) => Observable.throw(err.json().err));
   }
 
-  getLiveStatus(channel: string): Observable<any> {
+  getStream(channel: string): Observable<any> {
     const apiCall: string = this.apiBaseUrl + 'streams/' + channel + this.query;
 
     return this.jsonp.get(apiCall)
