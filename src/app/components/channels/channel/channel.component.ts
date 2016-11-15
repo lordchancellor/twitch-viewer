@@ -9,13 +9,13 @@ import { TwitchChannel } from '../../../classes/twitch-channel';
 })
 export class ChannelComponent implements OnInit {
   @Input() channel: TwitchChannel;
-  @Output() liveStatus: EventEmitter<boolean>;
+  @Output() liveStatus = new EventEmitter<boolean>();
 
   constructor() {
   }
 
   ngOnInit() {
-    //this.liveStatus.emit(this.channel.isLive);
+    this.liveStatus.emit(this.channel.isLive);
   }
 
 }
