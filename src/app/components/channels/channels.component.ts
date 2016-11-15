@@ -20,8 +20,6 @@ export class ChannelsComponent implements OnInit {
   data: string;
   errorMessage: any[];
 
-  @Input() liveOnly: boolean;
-
   constructor(public twitchService: TwitchService) {
     this.defaultChannels = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "habathcx", "RobotCaleb", "noobs2ninjas"];
 

@@ -25,6 +25,19 @@
 		.input-block {
 			max-width: 50%;
 		}
+
+		.button-block {
+			.btn-github {
+				background: #333;
+				border-color: #111;
+				color: #fff;
+
+				&:hover {
+					background: #222;
+					color: #fff;
+				}
+			}
+		}
 	}
 
 }

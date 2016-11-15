@@ -4,13 +4,10 @@
   </div>
   <div class="control-block">
     <div class="button-block">
-      <button class="btn btn-info">
-        <i class="fa fa-refresh" aria-hidden="true"></i>
-        Refresh
-      </button>
-
-      <button class="btn btn-success" *ngIf="!liveOnly" (click)="toggleViewOption()">View Live Streams</button>
-      <button class="btn btn-default" *ngIf="liveOnly" (click)="toggleViewOption()">Viw All Streams</button>
+      <a class="btn btn-github" href="http://github.com/lordchancellor/twitch-viewer" target="_blank" rel="noopener">
+        <i class="fa fa-lg fa-github" aria-hidden="true"></i>
+        See the code on GitHub
+      </a>
     </div>
 
     <div class="input-block">
