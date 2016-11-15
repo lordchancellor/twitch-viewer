@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'tv works!';
+  private liveOnly: boolean;
+
+  viewToggled(liveOnly: boolean) {
+    console.log('View changed ', liveOnly);
+    this.liveOnly = liveOnly;
+  }
+
 }

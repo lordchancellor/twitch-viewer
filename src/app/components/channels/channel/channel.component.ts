@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { TwitchChannel } from '../../../classes/twitch-channel';
 
@@ -9,11 +9,13 @@ import { TwitchChannel } from '../../../classes/twitch-channel';
 })
 export class ChannelComponent implements OnInit {
   @Input() channel: TwitchChannel;
+  @Output() liveStatus: EventEmitter<boolean>;
 
   constructor() {
   }
 
   ngOnInit() {
+    //this.liveStatus.emit(this.channel.isLive);
   }
 
 }

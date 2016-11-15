@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'tv-controls',
@@ -6,8 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./controls.component.scss']
 })
 export class ControlsComponent implements OnInit {
+  private liveOnly: boolean;
+  @Output() viewToggled = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor() {
+    this.liveOnly = false;
+  }
 
   ngOnInit() {
   }
@@ -16,5 +20,11 @@ export class ControlsComponent implements OnInit {
     console.log('You have searched for', input.value);
     input.value = '';
   }
+
+  toggleViewOption() {
+    this.liveOnly = !this.liveOnly;
+    this.viewToggled.emit(this.liveOnly);
+  }
+
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 
 import { TwitchChannel } from '../../classes/twitch-channel';
 import { TwitchService } from '../../services/twitch.service';
@@ -19,6 +19,8 @@ export class ChannelsComponent implements OnInit {
   
   data: string;
   errorMessage: any[];
+
+  @Input() liveOnly: boolean;
 
   constructor(public twitchService: TwitchService) {
     this.defaultChannels = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "habathcx", "RobotCaleb", "noobs2ninjas"];

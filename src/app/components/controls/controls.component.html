@@ -8,6 +8,9 @@
         <i class="fa fa-refresh" aria-hidden="true"></i>
         Refresh
       </button>
+
+      <button class="btn btn-success" *ngIf="!liveOnly" (click)="toggleViewOption()">View Live Streams</button>
+      <button class="btn btn-default" *ngIf="liveOnly" (click)="toggleViewOption()">Viw All Streams</button>
     </div>
 
     <div class="input-block">

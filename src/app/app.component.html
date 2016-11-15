@@ -1,7 +1,7 @@
-<tv-controls></tv-controls>
+<tv-controls (viewToggled)="viewToggled($event)"></tv-controls>
 
 <div class="container">
   <div class="row">
-    <tv-channels></tv-channels>
+    <tv-channels [liveOnly]="liveOnly"></tv-channels>
   </div>
 </div>
