@@ -21,7 +21,7 @@ export class ChannelsComponent implements OnInit {
   errorMessage: any[];
 
   constructor(public twitchService: TwitchService) {
-    this.defaultChannels = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "habathcx", "RobotCaleb", "noobs2ninjas"];
+    this.defaultChannels = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "habathcx", "RobotCaleb", "noobs2ninjas", "brunofin", "comster404"];
 
     this.twitchService.getChannel(this.defaultChannels[0])
       .subscribe(
@@ -50,19 +50,34 @@ export class ChannelsComponent implements OnInit {
 
     for (let channel of this.defaultChannels) {
       let isLive: boolean;
+      let isDiscontinued: boolean;
+      let status: string;
+      let image: string;
 
       this.twitchService.getStream(channel).subscribe(
-        res => isLive = res.stream !== null
+        res => {
+          isLive = res.stream !== null && res.stream !== undefined;
+          isDiscontinued = res.stream === undefined;
+        }
       );
 
       this.twitchService.getChannel(channel).subscribe(
         res => {
+          if (isDiscontinued) {
+            status = 'Channel no longer available';
+          }
+          else {
+            status = isLive ? res.status : 'Offline';
+          }
+
+          image = isDiscontinued ? '/assets/images/testcard.jpg' : res.logo;
+
           this.channels.push(
             new TwitchChannel(
               res.logo,
               isLive,
               res.display_name,
-              res.status,
+              status,
               res.url
             )
           );
