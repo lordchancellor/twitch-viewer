@@ -42,7 +42,7 @@ export class ChannelsComponent implements OnInit {
             status = isLive ? res.status : 'Offline';
           }
 
-          image = isDiscontinued ? '/assets/images/testcard.jpg' : res.logo;
+          image = isDiscontinued ? 'assets/images/testcard.jpg' : res.logo;
           channelName = isDiscontinued ? channel : res.display_name;
 
           this.channels.push(
