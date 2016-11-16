@@ -74,7 +74,7 @@ export class ChannelsComponent implements OnInit {
 
           this.channels.push(
             new TwitchChannel(
-              res.logo,
+              image,
               isLive,
               res.display_name,
               status,
