@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { TwitchChannel } from '../../../classes/twitch-channel';
 
@@ -7,13 +7,10 @@ import { TwitchChannel } from '../../../classes/twitch-channel';
   templateUrl: './channel.component.html',
   styleUrls: ['./channel.component.scss']
 })
-export class ChannelComponent implements OnInit {
+export class ChannelComponent {
   @Input() channel: TwitchChannel;
 
   constructor() {
-  }
-
-  ngOnInit() {
   }
 
 }

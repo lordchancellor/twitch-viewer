@@ -1,16 +1,13 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'tv-controls',
   templateUrl: './controls.component.html',
   styleUrls: ['./controls.component.scss']
 })
-export class ControlsComponent implements OnInit {
+export class ControlsComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
   search(input: any) {
     console.log('You have searched for', input.value);
