@@ -53,6 +53,7 @@ export class ChannelsComponent implements OnInit {
       let isDiscontinued: boolean;
       let status: string;
       let image: string;
+      let channelName: string;
 
       this.twitchService.getStream(channel).subscribe(
         res => {
@@ -71,12 +72,13 @@ export class ChannelsComponent implements OnInit {
           }
 
           image = isDiscontinued ? '/assets/images/testcard.jpg' : res.logo;
+          channelName = isDiscontinued ? channel : res.display_name;
 
           this.channels.push(
             new TwitchChannel(
               image,
               isLive,
-              res.display_name,
+              channelName,
               status,
               res.url
             )
