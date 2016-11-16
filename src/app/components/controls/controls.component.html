@@ -10,7 +10,8 @@
       </a>
     </div>
 
-    <div class="input-block">
+    <!-- Hide the input block for V1 deployment -->
+    <div class="input-block" *ngIf="false">
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search..." #searchField (keyup.enter)="search(searchField)">
         <span class="input-group-btn">
